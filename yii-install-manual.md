@@ -143,3 +143,5 @@ RewriteRule . index.php
 
 ## GII
 go to 'http://[yout-domin]/gii'
+
+
