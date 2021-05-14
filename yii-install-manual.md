@@ -52,6 +52,8 @@ git config --local user.email dev-phoenix@mail.ru
 git config --list --show-origin
 ```
 
+git remote set-url origin git@github.com:dev-phoenix/yii-install-guide.git
+
 for install yii2 anvanced, tipe to console:
 ```
 composer create-project --prefer-dist yiisoft/yii2-app-advanced yii-application
