@@ -13,7 +13,7 @@ yii,
 create branch on yii dir,
 create branch on github,
 push branch from histing to github,
-pull branch from github to local machin,
+clone branch from github to local machin,
 update scripts,
 push its to github,
 pull from hithub to hostig,
@@ -24,7 +24,7 @@ if you have error like:
 ```
 fatal: refusing to merge unrelated histories
 ```
-when you try pull or push,
+when you try pull or push,<br/>
 maybe you have always created repositories on hosting or local and on githab.
 
 You can try next:

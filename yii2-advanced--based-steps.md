@@ -4,15 +4,26 @@
 
 ## Create tables
 ### create tables migrate files
-first step is planing db structure.
-second step is create files for tables migration.
-Type in root dir of your site:
+first step is planing db structure.<br/>
+second step is create files for tables migration.<br/>
+Type in root dir of your site:<br/>
 ```
 cd <root-dir-of-your-site>
-php yii migrate/create drop_reviews_table
+php yii migrate/create create_orders_table
+php yii migrate/create create_payments_table
 
 php yii migrate
 ```
+
+maybe you will need next commans:
+```
+yii migrate/to m180108_093530_create_reviews_table
+yii migrate/down m180108_093530_create_reviews_table
+yii migrate/redo
+yii migrate/redo 23
+php yii migrate/history all
+```
+you can find description of comands `to, down, redo, redo <num>, history all` in google
 
 if you caught error like:
 ```
