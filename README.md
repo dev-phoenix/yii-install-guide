@@ -5,6 +5,8 @@ install and development yii2 via bush and composer and git and github
 guide [how develop yii](https://github.com/dev-phoenix/yii-install-guide/blob/master/yii-install-manual.md):
 =====
 
+short plan:
+```
 instal composer,
 git,
 yii,
@@ -15,3 +17,4 @@ update scripts,
 push its to github,
 pull from hithub to hostig,
 update site page on your browser.
+```
