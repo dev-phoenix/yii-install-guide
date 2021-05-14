@@ -13,7 +13,8 @@ add for postgresql:
 ```php
             'dsn' => 'pgsql:host=localhost;dbname=<dbname>',
 ```
-and change other fields on section ` db `
+and change other needed fields on section<br/>
+` return [ 'components' => [ 'db' => [ ... ], `
 
 ## Create tables
 ### create tables migrate files

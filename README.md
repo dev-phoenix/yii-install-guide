@@ -22,6 +22,7 @@ update site page on your browser.
 
 [preparation](https://github.com/dev-phoenix/yii-install-guide/blob/master/yii-install-manual.md)
 [database tables](https://github.com/dev-phoenix/yii-install-guide/blob/master/yii2-advanced--based-steps.md)
+[access system RBAC](https://github.com/dev-phoenix/yii-install-guide/blob/master/yii2-advanced--roles-rbac.md)
 
 if you have error like:
 ```
