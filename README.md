@@ -20,6 +20,9 @@ pull from hithub to hostig,
 update site page on your browser.
 ```
 
+[preparation](https://github.com/dev-phoenix/yii-install-guide/blob/master/yii-install-manual.md)
+[database tables](https://github.com/dev-phoenix/yii-install-guide/blob/master/yii2-advanced--based-steps.md)
+
 if you have error like:
 ```
 fatal: refusing to merge unrelated histories

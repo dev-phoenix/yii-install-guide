@@ -2,6 +2,19 @@
 #yii2-advanced--based-steps.md
 <!-- yii2-advanced--based-steps.md -->
 
+## Connect to DataBase
+change file:<br>
+<your-site-dir>/common/config/main-local.php
+add for mysql:
+```php
+            'dsn' => 'mysql:host=localhost;dbname=<dbname>',
+```
+add for postgresql:
+```php
+            'dsn' => 'pgsql:host=localhost;dbname=<dbname>',
+```
+and change other fields on section ` db `
+
 ## Create tables
 ### create tables migrate files
 first step is planing db structure.<br/>
