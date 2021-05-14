@@ -59,7 +59,11 @@ and for create clear installation<br/>
 type to console:
 ```
 composer create-project --prefer-dist yiisoft/yii2-app-advanced yii-advanced
+php init
+php yii migrate
 ```
+if you caught trouble like php version, try found solve in this:
+ [yii2 advanced based steps](https://github.com/dev-phoenix/yii-install-guide/blob/master/yii2-advanced--based-steps.md)
 
 ## Install bootstrap4:
 use guide: [Twitter Bootstrap 4 Extension for Yii 2](https://github.com/yiisoft/yii2-bootstrap4)
