@@ -3,8 +3,8 @@
 <!-- yii2-advanced--based-steps.md -->
 
 ## Connect to DataBase
-change file:<br>
-<your-site-dir>/common/config/main-local.php
+change file:<br/>
+`<your-site-dir>/common/config/main-local.php`<br/>
 add for mysql:
 ```php
             'dsn' => 'mysql:host=localhost;dbname=<dbname>',
