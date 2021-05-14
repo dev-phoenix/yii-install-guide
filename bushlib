@@ -1,0 +1,19 @@
+# bushlib
+function gsend {
+git status
+git add .
+git commit -m "auto commit: $1"
+git push
+}
+function gits {
+git status
+}
+function gitsa {
+git add .
+}
+function gitp {
+git push
+}
+function gitpl {
+git pull
+}

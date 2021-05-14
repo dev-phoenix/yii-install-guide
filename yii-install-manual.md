@@ -1,9 +1,9 @@
 # yii-install-guide
 
-## develop yii throw git
+# develop yii throw git
 
-install composer
-use guide: [install git via bush](https://github.com/yiisoft/yii2-bootstrap4)
+## install composer
+use guide: [install git via bush](https://getcomposer.org/download/)
 ```
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
@@ -17,15 +17,16 @@ curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 ```
 
-install git to your hosting
-use guide: [install git via bush](https://github.com/yiisoft/yii2-bootstrap4)
+## install git to your hosting
+use guide: [install git via bush](https://git-scm.com/book/ru/v2/Введение-Установка-Git)<br>
+vizit https://github.com/git/git/releases and select git version source url<br>
+on CentOS use:
 ```
 sudo yum update -y
 sudo yum groupinstall "Development Tools" -y
 sudo yum install gettext-devel openssl-devel perl-CPAN perl-devel zlib-devel -y
 yum install wget -y
 
-# https://github.com/git/git/releases
 wget https://github.com/git/git/archive/v2.13.0.tar.gz -O git.tar.gz
 tar -zxf git.tar.gz
 cd git-2.13.0
@@ -52,24 +53,78 @@ git config --local user.email dev-phoenix@mail.ru
 git config --list --show-origin
 ```
 
-git remote set-url origin git@github.com:dev-phoenix/yii-install-guide.git
-
-for install yii2 anvanced, tipe to console:
+## for install yii2 anvanced
+go to future site's dir<br/>
+and for create clear installation<br/>
+type to console:
 ```
-composer create-project --prefer-dist yiisoft/yii2-app-advanced yii-application
-```
-
-```php
-echo Button::widget([
-    'label' => 'Action',
-    'options' => ['class' => 'btn-primary'], // создаст класс "btn btn-primary"
-]);
+composer create-project --prefer-dist yiisoft/yii2-app-advanced yii-advanced
 ```
 
 ## Install bootstrap4:
 use guide: [Twitter Bootstrap 4 Extension for Yii 2](https://github.com/yiisoft/yii2-bootstrap4)
 
-## add clear link
+some example for php widget:
+```php
+echo Button::widget([
+    'label' => 'Action',
+    'options' => ['class' => 'btn-primary'], // create class "btn btn-primary"
+]);
+```
+
+After install and made needed operation,<br/>
+maybe you may noticed that site not work.
+Maybe you need change dirs and files owner:
+```
+sudo chown -R user-name:user-group <site-dir>
+```
+
+## create first repositories
+In first step, create repo on your github project<br/>
+then create your repo in dir of yii2-advanced installation: 
+```
+cd path-to-yii/yii2-advanced
+git init
+git add .
+git commit -m "First repo"
+git branch -M master
+git remote add origin [your-repo-ssh_or_https-link]
+# if you got mistake, you can change adress, that you now named 'origin'
+git remote set-url origin [your-repo-ssh_or_https-link]
+git push origin master
+```
+
+### if you have error like:
+```
+fatal: refusing to merge unrelated histories
+```
+when you try pull or push,
+maybe you have always created repositories on hosting or local and on githab.
+
+You can try next:
+```
+git pull origin master --allow-unrelated-histories
+```
+then how always: add, commit, push, ... etc.
+
+
+## git ignore files
+If you whant exclude some files from repo,<br/>
+insert it's path to file .gitignore
+Look example of .gitignore in root of your site
+
+You must add rule for excluding before create excluded file.
+Otherwise you can get problem with non excluded file.
+If you got this problem, you must exclude file from branch tracking:
+```
+git reset <file-name>
+```
+or
+```
+git rm --cached <file-name> 
+```
+
+## notice to add clear link
 add file:
     fointed/web/.htaccess
 ```htaccess
