@@ -31,4 +31,4 @@ You can try next:
 ```
 git pull origin master --allow-unrelated-histories
 ```
-than how always: add, commit, push, ... etc.
+then how always: add, commit, push, ... etc.
