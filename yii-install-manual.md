@@ -113,7 +113,7 @@ then how always: add, commit, push, ... etc.
 
 
 ## git ignore files
-If you whant exclude some files from repo,<br/>
+If you want exclude some files from repo,<br/>
 insert it's path to file .gitignore
 Look example of .gitignore in root of your site
 

@@ -27,7 +27,7 @@ return [
     ...
 ```
 
-if you whant use DbManager
+if you want use DbManager<br/>
 you will need uncomment row:
 ```php
             'class' => 'yii\rbac\DbManager', // if you whont safe settigns in db
@@ -208,7 +208,7 @@ if(\Yii::$app->authManager->checkAccess($userId, 'admin', $params = [])){
 }
 ```
 
-Как контролировать доступ по ролям в контроллере с фильтром AccessControl
+
 ## Controll access by roles on controller with AccessControl filter
 with help `yii\filters\AccessControl`<br/>
 in SiteController:

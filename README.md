@@ -23,6 +23,7 @@ update site page on your browser.
 ## Extended instrutions
 
 [preparation](https://github.com/dev-phoenix/yii-install-guide/blob/master/yii-install-manual.md)<br/>
+[localization](https://github.com/dev-phoenix/yii-install-guide/blob/master/yii2--localization.md)<br/>
 [database tables](https://github.com/dev-phoenix/yii-install-guide/blob/master/yii2-advanced--based-steps.md)<br/>
 [Roles. RBAC access system.](https://github.com/dev-phoenix/yii-install-guide/blob/master/yii2-advanced--roles-rbac.md)<br/>
 
