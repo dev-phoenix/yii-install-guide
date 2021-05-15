@@ -28,7 +28,7 @@ return [
 ```
 
 if you whant use DbManager
-you shell need uncoment row:
+you shell need uncomment row:
 ```php
             'class' => 'yii\rbac\DbManager', // if you whont safe settigns in db
 ```
@@ -40,6 +40,258 @@ php yii migrate --migrationPath=@yii/rbac/migrations
 you will have new structure in db(database) after this.<br/>
 <br/>
 Now we try create role access system, based on files data.
+
+
+## RBAC Start Controller
+Add and change file<br/>
+`<your-site-dir>/console/controllers/RbacStartController.php`
+```php
+<?php
+namespace console\controllers;
+
+use Yii;
+use yii\console\Controller;
+
+class RbacStartController extends Controller
+{
+    public function actionInit()
+    {
+        $auth = Yii::$app->authManager;
+
+        // добавляем роль "user"
+        $user = $auth->createRole('user');
+        $auth->add($user);
+
+        // добавляем роль "admin"
+        $admin = $auth->createRole('admin');
+        $auth->add($admin);
+        $auth->addChild($admin, $user);
+   }
+
+}
+```
+### bash
+```
+php yii rbac-start/init
+```
+
+change method signup() in model SignupForm<br/>
+`frontend/models/SignupForm.php`
+```php
+public function signup()
+{
+    if (!$this->validate()) {
+        return null;
+    }
+    
+    $user = new User();
+    $user->username = $this->username;
+    $user->email = $this->email;
+    $user->setPassword($this->password);
+    $user->generateAuthKey();
+
+    //Добавляем роль по умолчанию для каждого зарегестрированного
+    if($user->save()){
+        $auth = Yii::$app->authManager;
+        $role = $auth->getRole('user');
+        $auth->assign($role, $user->id);
+
+        return $user;
+    }
+    
+    return null;
+}
+
+```
+
+### add admin role by console controller
+add file<br/>
+`console/controllers/RbacAdminAssignController.php`
+```php
+<?php
+namespace console\controllers;
+
+use Yii;
+use yii\console\Controller;
+use common\models\User;
+use yii\console\ExitCode;
+use yii\helpers\Console;
+
+//php yii rbac-admin-assign/init 1
+class RbacAdminAssignController extends Controller
+{
+    public function actionInit($id){
+
+        //Проверяем обязательный параметр id
+        if(!$id || is_int($id)){
+            // throw new \yii\base\InvalidConfigException("param 'id' must be set");
+            $this->stdout("Param 'id' must be set!\n", Console::BG_RED);
+            return ExitCode::UNSPECIFIED_ERROR;
+        }
+
+        //Есть ли пользователь с таким id
+        $user = (new User())->findIdentity($id);
+        if(!$user){
+            // throw new \yii\base\InvalidConfigException("User witch id:'$id' is not found");
+            $this->stdout("User witch id:'$id' is not found!\n", Console::BG_RED);
+            return ExitCode::UNSPECIFIED_ERROR;
+        }
+
+        //Получаем объект yii\rbac\DbManager, который назначили в конфиге для компонента authManager
+        $auth = Yii::$app->authManager;
+
+        //Получаем объект роли
+        $role = $auth->getRole('admin');
+
+        //Удаляем все роли пользователя
+        $auth->revokeAll($id);
+
+        //Присваиваем роль админа по id
+        $auth->assign($role, $id);
+
+        //Выводим сообщение об успехе и возвращаем соответствующий код
+        $this->stdout("Done!\n", Console::BOLD);
+        return ExitCode::OK;
+        
+   }
+}
+```
+### bash
+for add admin role to user whith id = 1<br/>
+type on bash:
+```
+php yii rbac-admin-assign/init 1
+```
+
+### how check role with rbac
+exemple:
+```php
+<?php
+//Если текущий пользователь - не гость
+if (!Yii::$app->user->isGuest) {
+    $userId = \Yii::$app->user->getId();
+
+    //Все роли текущего пользователя
+    var_dump(\Yii::$app->authManager->getRolesByUser($userId));
+    PHP_EOL;
+
+    //Разрешение пользователя
+    var_dump(\Yii::$app->authManager->getAssignment('admin', $userId));
+    PHP_EOL;
+
+    //Все разрешения пользователя
+    var_dump(\Yii::$app->authManager->getAssignments($userId));
+    PHP_EOL;
+
+    //Проверка доступа пользователя
+    var_dump(\Yii::$app->authManager->checkAccess($userId, 'admin', $params = []));
+    PHP_EOL;
+    
+    //Тоже проверка доступа пользователя
+    var_dump(Yii::$app->user->can('admin'));
+
+
+} else {
+    echo "Здравствуйте, Гость!";
+}
+?>
+```
+simple exemple:
+```php
+if(Yii::$app->user->can('admin')){
+    echo "Привет, админ!" . PHP_EOL;
+}
+
+//Аналогично работает с вариантом выше
+if(\Yii::$app->authManager->checkAccess($userId, 'admin', $params = [])){
+    echo "Привет, админ!" . PHP_EOL;
+}
+```
+
+Как контролировать доступ по ролям в контроллере с фильтром AccessControl
+## Controll access by roles on controller with AccessControl filter
+with help `yii\filters\AccessControl`<br/>
+in SiteController:
+```php
+public function behaviors()
+{
+    return [
+        'access' => [
+            'class' => AccessControl::className(),
+            'only' => ['logout', 'signup'],
+            'rules' => [
+                [
+                    'actions' => ['signup'],
+                    'allow' => true,
+                    'roles' => ['?'],
+                ],
+                [
+                    'actions' => ['logout'],
+                    'allow' => true,
+                    'roles' => ['@'],
+                ],
+                
+            ],
+
+        ],
+        'verbs' => [
+            'class' => VerbFilter::className(),
+            'actions' => [
+                'logout' => ['post'],
+            ],
+        ],
+    ];
+}
+```
+for access only by admin role change to:
+```php
+public function behaviors()
+{
+    return [
+        'access' => [
+            'class' => AccessControl::className(),
+            'only' => ['logout', 'signup'],
+            'rules' => [
+                [
+                    'actions' => ['signup'],
+                    'allow' => true,
+                    'roles' => ['?'],
+                ],
+                [
+                    'actions' => ['logout'],
+                    'allow' => true,
+                    'roles' => ['@'],
+                ],
+                
+            ],
+
+        ],
+
+        //Доступ только для админа 
+        [
+            'class' => AccessControl::className(),
+            'only' => ['index'],
+            'rules' => [
+                [
+                    'actions' => ['index'],
+                    'allow' => true,
+                    'roles' => ['admin'],
+                ],
+            ],
+            
+        ],
+  
+        'verbs' => [
+            'class' => VerbFilter::className(),
+            'actions' => [
+                'logout' => ['post'],
+            ],
+        ],
+    ];
+}
+```
+
+===============
 
 ## RBAC Controller console app
 Add and change file<br/>
@@ -167,7 +419,10 @@ than type user name and choose his role
 ```
 
 #### Souces:
+[Yii2 RBAC DbManager](https://coderius.biz.ua/blog/article/yii2-rbac-dbmanager-cast-1-primer-nastrojki-i-sozdania-rolej)
+ ( facebook: [Sergio Codev](https://www.facebook.com/sergio.codev.1) )<br/>
 [Доступ к сайту на основе ролей (RBAC) в Yii2.](https://klisl.com/rbac.html) ( githab: [klisl](https://github.com/klisl) )<br/>
-[Yii2-advanced: Гибкая настройка Yii2 RBAC (роли, разрешения, правила)](https://habr.com/ru/post/327170/) ( habr: [Jekshmek](https://habr.com/ru/users/Jekshmek/) )<br/>
+[Yii2-advanced: Гибкая настройка Yii2 RBAC (роли, разрешения, правила)](https://habr.com/ru/post/327170/)
+ ( habr: [Jekshmek](https://habr.com/ru/users/Jekshmek/) )<br/>
 
 
