@@ -29,9 +29,9 @@ change paramet `useFileTransport` to `true`:
 ```
 
 ## Templates
-Templates of email located at
-`common/mail`
-or
+Templates of email located at<br/>
+`common/mail`<br/>
+or<br/>
 `@app/mail`
 
 ## Test email location
