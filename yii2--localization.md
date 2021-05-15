@@ -1,5 +1,5 @@
 # Interface localization
-### Example: from English to Russion
+### Example: from English to Russian
 
 <!-- yii2--localization.md -->
 
@@ -52,10 +52,24 @@ return [
 ];
 ```
 
+### Add error vocabulary
+create and fill file<br/>
+`frontend/messages/ru-RU/app/error.php`
+```php
+<?php
+
+/* 
+ * localization
+ * errors
+ */
+return [
+    // ?
+];
+```
+
 ### Usage
 Menu on header by example.<br/>
 Open and update file<br/>
-
 `frontend/views/layouts/main.php`
 ```php
 ...
