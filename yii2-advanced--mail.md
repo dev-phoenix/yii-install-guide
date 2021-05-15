@@ -13,7 +13,7 @@ yii\mail\BaseMailer::fileTransportPath<br/>
 For activate sendig emails,<br/>
 open config file:<br/>
 `common/config/main-local.php`<br/>
-and chenge paramet `useFileTransport` to `false`:
+and change paramet `useFileTransport` to `false`:
 ```php
 ...
  'useFileTransport' => false,
@@ -21,7 +21,7 @@ and chenge paramet `useFileTransport` to `false`:
 ```
 
 If you want to test emails and caught its on files<br/>
-chenge paramet `useFileTransport` to `true`:
+change paramet `useFileTransport` to `true`:
 ```php
 ...
  'useFileTransport' => true,
