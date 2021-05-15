@@ -36,9 +36,9 @@ or
 
 ## Test email location
 Basicly, sended emails save to a files.<br/>
-Defaultly its located in dir:
-`frontend/runtime/mail`
-or
+Defaultly its located in dir:<br/>
+`frontend/runtime/mail`<br/>
+or<br/>
 `@runtime/mail`
 
 ## Send example
