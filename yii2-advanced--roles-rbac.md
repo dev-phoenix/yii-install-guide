@@ -2,6 +2,17 @@
 
 <!-- yii2-advanced--roles-rbac.md -->
 
+## Short plan
+```
+update common/config/main.php | allow DbManager
+create console/controllers/RbacController.php 
+    create roles and permissions
+    assign perm to admin
+type in bash:
+    yii rbac/init
+update controllers agree whith permissions
+```
+
 ## Turn ON 
 
 change file:<br/>
