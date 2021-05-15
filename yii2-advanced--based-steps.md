@@ -1,4 +1,4 @@
-# yii2 advanced based steps
+# Yii2 advanced. Based steps.
 #yii2-advanced--based-steps.md
 <!-- yii2-advanced--based-steps.md -->
 
@@ -25,7 +25,16 @@ Type in root dir of your site:<br/>
 cd <root-dir-of-your-site>
 php yii migrate/create create_orders_table
 php yii migrate/create create_payments_table
-
+```
+then you can found migration files on directory:<br/>
+`<site-dir>/console/migrations/`<br/>
+<br/>
+Update table migration classes<br/>
+used file named some like `m130524_201442_init.php`<br/>
+as example.<br/>
+<br/>
+your next step is type:
+```
 php yii migrate
 ```
 
