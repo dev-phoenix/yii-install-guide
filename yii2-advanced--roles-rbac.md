@@ -28,7 +28,7 @@ return [
 ```
 
 if you whant use DbManager
-you shell need uncomment row:
+you will need uncomment row:
 ```php
             'class' => 'yii\rbac\DbManager', // if you whont safe settigns in db
 ```
