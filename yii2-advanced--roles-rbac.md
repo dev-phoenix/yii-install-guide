@@ -154,7 +154,7 @@ than type user name and choose his role
 
 #### souces:
 
-[Доступ к сайту на основе ролей (RBAC) в Yii2.](https://klisl.com/rbac.html)<br/>
-[Yii2-advanced: Гибкая настройка Yii2 RBAC (роли, разрешения, правила)](https://habr.com/ru/post/327170/)<br/>
+[Доступ к сайту на основе ролей (RBAC) в Yii2.](https://klisl.com/rbac.html) ( githab: [klisl](https://github.com/klisl) )<br/>
+[Yii2-advanced: Гибкая настройка Yii2 RBAC (роли, разрешения, правила)](https://habr.com/ru/post/327170/) (habr: [Jekshmek](https://habr.com/ru/users/Jekshmek/))<br/>
 
 
