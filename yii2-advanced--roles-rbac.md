@@ -27,6 +27,20 @@ return [
     ...
 ```
 
+if you whant use DbManager
+you shell need uncoment row:
+```php
+            'class' => 'yii\rbac\DbManager', // if you whont safe settigns in db
+```
+and to commet next rows in this section.<br/>
+Than open bash console and type:
+```
+php yii migrate --migrationPath=@yii/rbac/migrations
+```
+you will have new structure in db(database) after this.<br/>
+<br/>
+Now we try create role access system, based on files data.
+
 ## RBAC Controller console app
 Add and change file<br/>
 `<your-site-dir>/console/controllers/RbacController.php`
@@ -152,9 +166,8 @@ than type user name and choose his role
 ```php
 ```
 
-#### souces:
-
+#### Souces:
 [Доступ к сайту на основе ролей (RBAC) в Yii2.](https://klisl.com/rbac.html) ( githab: [klisl](https://github.com/klisl) )<br/>
-[Yii2-advanced: Гибкая настройка Yii2 RBAC (роли, разрешения, правила)](https://habr.com/ru/post/327170/) (habr: [Jekshmek](https://habr.com/ru/users/Jekshmek/))<br/>
+[Yii2-advanced: Гибкая настройка Yii2 RBAC (роли, разрешения, правила)](https://habr.com/ru/post/327170/) ( habr: [Jekshmek](https://habr.com/ru/users/Jekshmek/) )<br/>
 
 
