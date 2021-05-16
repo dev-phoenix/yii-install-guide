@@ -10,7 +10,7 @@ create console/controllers/RbacController.php
     assign perm to admin
 type in bash:
     yii rbac/init
-update controllers agree whith permissions
+update behaviors method in controllers agree new permissions  
 ```
 
 ## Turn ON 
