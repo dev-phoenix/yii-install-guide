@@ -17,9 +17,9 @@ php yii migrate/down 3 # unset last 3 migrations
 php yii migrate/redo 3 # restart last 3 migrations
 php yii migrate/history all # show all migrations
 
-yii migrate/new         # show 10 new migrations
-yii migrate/new 5       # show  5 new migrations
-yii migrate/new all     # show all new migrations
+php yii migrate/new         # show 10 new migrations
+php yii migrate/new 5       # show  5 new migrations
+php yii migrate/new all     # show all new migrations
 ```
 ## More information:
 [Database Migration](https://www.yiiframework.com/doc/guide/2.0/en/db-migrations)
