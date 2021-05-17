@@ -27,6 +27,7 @@ update site page on your browser.
 [database tables](https://github.com/dev-phoenix/yii-install-guide/blob/master/yii2-advanced--based-steps.md)<br/>
 [email](https://github.com/dev-phoenix/yii-install-guide/blob/master/yii2-advanced--mail.md)<br/>
 [Roles. RBAC access system.](https://github.com/dev-phoenix/yii-install-guide/blob/master/yii2-advanced--roles-rbac.md)<br/>
+[DB Migration](https://github.com/dev-phoenix/yii-install-guide/blob/master/yii2-advanced--migration.md)
 
 if you have error like:
 ```
